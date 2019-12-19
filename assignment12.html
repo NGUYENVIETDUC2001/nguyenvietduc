@@ -1,0 +1,92 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dự Báo Thời Tiết 5 ngày - 3 giờ</title>
+    <link rel="stylesheet" href="css/assignment12.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="vendors/fontawesome-free-5.11.2-web/css/all.css"/>
+</head>
+<body>
+<header>
+    <h1>Day la header</h1>
+</header>
+<section class="section">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="title">
+                <h1>Thời tiết Hà Nội</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container" id="weather">
+
+    </div>
+</section>
+<script type="text/javascript" src="js/jquery3.4.1.js"></script>
+<script type="text/javascript" src="js/footer.js"></script>
+<script type="text/javascript">
+    //sessionStorage.setItem("sst","hello world!");
+    if(localStorage.getItem("header") !==null){
+        var header = "<header>\n" +
+            "    <h1>Day la header</h1>\n" +
+            "</header>";
+        localStorage.setItem(("header",header);
+    };
+    if(localStorage.getItem("forecast") !==null) {
+        var str = localStorage.getItem("forecast");
+        var ary = JSON.parse(str);
+        render(ary);
+    }else {
+        $.ajax({
+            url: 'http://api.openweathermap.org/data/2.5/forecast?q=hanoi,vietnam&appid=09a71427c59d38d6a34f89b47d75975c&units=metric',
+            method: "GET",
+            success: function (result) {
+                var ary = result.list;
+                var str = JSON.stringify(ary);
+                localStorage.setItem("forecast", str);
+                render(ary);
+            }
+        });
+    }
+
+    function forecast() {
+            for(var i=0;i<ary.length;i++){
+                var item = ary[i];
+                var d_t = item.dt_txt;
+                var dt = d_t.split(" ");
+                var item_html = "<div class=\"item col-md-12\">\n" +
+                    "            <div class=\"col-md-12\">\n" +
+                    "                <div class=\"date block\">\n" +
+                    "                    <span class=\"icon-font\"><i class=\"far fa-calendar-alt\"></i></span>"+dt[0]+"\n" +
+                    "                </div>\n" +
+                    "                <div class=\"temp-max block\">\n" +
+                    "                    <span class=\"icon-font\"><i class=\"fas fa-thermometer-three-quarters\"></i></span>"+item.main.temp_max+"\n" +
+                    "                </div>\n" +
+                    "                <div class=\"temp-min block\">\n" +
+                    "                    <span class=\"icon-font\"><i class=\"fas fa-thermometer-quarter\"></i></span>"+item.main.temp_min+"\n" +
+                    "                </div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"col-md-12\">\n" +
+                    "                <div class=\"time block\">\n" +
+                    "                    <span class=\"icon-font\"><i class=\"far fa-clock\"></i></span>"+dt[1]+"\n" +
+                    "                </div>\n" +
+                    "                <div class=\"wind block\">\n" +
+                    "                    <span class=\"icon-font\"><i class=\"fas fa-tachometer-alt\"></i></span>"+item.wind.speed+"\n" +
+                    "                </div>\n" +
+                    "                <div class=\"humidify block\">\n" +
+                    "                    <span class=\"icon-font\"><i class=\"fas fa-tint\"></i></span>"+item.main.humidity+"\n" +
+                    "                </div>\n" +
+                    "            </div>\n" +
+                    "        </div>";
+                $("#weather").append(item_html);
+            }
+        }
+    });
+</script>
+</body>
+</html>

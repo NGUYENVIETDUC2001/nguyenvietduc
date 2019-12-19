@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo_Ajax</title>
+</head>
+<body>
+    <h1 class="city">City :</h1>
+    <h2 class="temp">Temp :</h2>
+    <h3 class="hum">Humidity :</h3>
+    <h4 class="speed">Wind :</h4>
+    <h2 class="desc">Description :</h2>
+
+<script type="text/javascript" src="js/jquery3.4.1.js"></script>
+<script type="text/javascript">
+    $("body").prepend(localStorage.getItem("header",header))
+    $.ajax({
+        url:"http://api.openweathermap.org/data/2.5/weather?q=hanoi,vietnam&appid=09a71427c59d38d6a34f89b47d75975c&units=metric",
+        method:"GET",
+        success: function (result) {
+            //console.log(result);
+            var cityName = result.name;
+            var temp = result.main.temp;
+            var hum = result.main.humidity;
+            var speed = result.wind.speed;
+            var desc = result.weather[0].description;
+            $(".city").append(cityName);
+            $(".temp").append(temp);
+            $(".hum").append(hum);
+            $(".speed").append(speed);
+            $(".desc").append(desc);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accio</title>
+    <link href="https://fonts.googleapis.com/css?family=Be+Vietnam:100,300,400,500,600,700,800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/accio.css"/>
+</head>
+<body>
+<header class="section">
+    <div class="container">
+        <div class="logo">
+            <a href="#">ACCIO</a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Full width</a></li>
+                <li><a href="#">Archives</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<section class="section">
+    <div class="container">
+        <div class="content">
+           <form method="get/post" action="#">
+               <input type="text" name="fullname" placeholder="Full Name" required/>
+               <input type="email" name="email" placeholder="Email"/>
+               <input type="password" name="password" placeholder="Password"/>
+               <input type="date" name="birthday" placeholder="Birthday"/>
+               <input type="color" name="color" placeholder="Color">
+               <label><input type="checkbox" name="condition" />I accept the requirements<br/></label>
+               <label><input type="radio" name="gender" value="1"/>Male<br/></label>
+               <label><input type="radio" name="gender" value="2"/>Female<br/></label>
+               <label><input type="radio" name="gender" value="3"/>Other<br/></label>
+               <input type="range" min="0" max="100" name="rating"><br/>
+               <select name="country">
+                   <option>Choose</option>
+                   <option value="us">US</option>
+                   <option value="vn">VN</option>
+                   <option value="uk">UK</option>
+                   <option value="cn" >CN</option>
+                   <option value="jp">JP</option>
+               </select>
+               <textarea name="description" rows="10" cols="110" placeholder="Introduce Yourself"></textarea>
+               <button type="button">Button</button>
+               <button type="reset">Reset</button>
+               <button type="submit" onclick="return confirm('RU SURE?')">Submit</button>
+           </form>
+            <table>
+                <thead>
+                    <th>Student Name</th>
+                    <th>DoB</th>
+                    <th>Address</th>
+                    <th>Class</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Markus Vuon</td>
+                        <td>26/09/2003</td>
+                        <td>???</td>
+                        <td>11A1</td>
+                    </tr>
+                    <tr>
+                        <td>Nighteno</td>
+                        <td>24/12/2018</td>
+                        <td>Roblox Server</td>
+                        <td>Prisoner</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>
